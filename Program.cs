@@ -1,4 +1,5 @@
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SixMinAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,13 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var sqlConnBuilder = new SqlConnectionStringBuilder();
+var sqlConBuilder = new SqlConnectionStringBuilder();
 
-sqlConnBuilder.ConnectionString = builder.Configuration.GetConnectionString("SQLDbConnection");
-sqlConnBuilder.UserId = builder.Configuration["UserId"];
-sqlConnBuilder.Password = builder.Configuration["Password"];
+sqlConBuilder.ConnectionString = builder.Configuration.GetConnectionString("SQLDbConnection");
+sqlConBuilder.UserID = builder.Configuration["UserID"];
+sqlConBuilder.Password = builder.Configuration["Password"];
 
-builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(sqlConnBuilder.ConnectionString));
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(sqlConBuilder.ConnectionString));
 
 var app = builder.Build();
 

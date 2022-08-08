@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SixMinAPI.Models;
 
 namespace SixMinAPI.Data
 {
