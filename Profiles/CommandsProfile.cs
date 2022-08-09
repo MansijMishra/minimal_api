@@ -4,15 +4,14 @@ using SixMinAPI.Models;
 
 namespace SixMinAPI.Profiles
 {
-    public class CommandsProfile() : Profile
+    public class CommandsProfile : Profile
     {
         public CommandsProfile()
         {
-        // Source -> Target
-        CreateMap<Command, CommandReadDto>();
-        CreateMap<CommandCreateDto, Command>();
-        CreateMap<CommandUpdateDto, Command>();
+            // Source -> Target
+            CreateMap<Command, CommandReadDto>();
+            CreateMap<CommandCreateDto, Command>();
+            CreateMap<CommandUpdateDto, Command>();
         }
     }
-
 }

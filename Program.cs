@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SixMinAPI.Data;
@@ -28,6 +29,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapGet("api/v1/commands", async (ICommandRepo repo, IMapper mapper) => {
+    var commands = await repo.GetAllCommands();
+    return Results.Ok(mapper.Map<IEnumerable<CommandReadDto>>(commands));
+});
 
 
 app.Run();
