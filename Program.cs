@@ -69,5 +69,20 @@ app.MapPut("api/v1/commands/{id}", async (ICommandRepo repo, IMapper mapper, int
     return Results.NoContent();
 });
 
+app.MapDelete("api/v1/commands/{id}", async (ICommandRepo repo, IMapper mapper, int id) => {
+    var command = await repo.GetCommandById(id);
+    if (command == null)
+    {
+        return Results.NotFound();
+    }
+
+    repo.DeleteCommand(command);
+
+    await repo.SaveChanges();
+
+    return Results.NoContent();
+    
+});
+
 app.Run();
 
